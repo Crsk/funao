@@ -1,3 +1,5 @@
+import { MaterialButtonsIndicatorsModule } from './../../shared/modules/material/buttons-indicators.module';
+import { MaterialLayoutModule } from './../../shared/modules/material/layout.module';
 import { BasicModule } from './../../shared/modules/basic/basic.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,6 +19,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     BasicModule,
+    MaterialLayoutModule,
+    MaterialButtonsIndicatorsModule,
   ]
 })
 
