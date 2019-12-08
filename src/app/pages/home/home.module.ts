@@ -1,3 +1,4 @@
+import { BasicModule } from './../../shared/modules/basic/basic.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    BasicModule,
   ]
 })
 

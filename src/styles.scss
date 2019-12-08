@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+$funao-primary: mat-palette($mat-red, 900);
+$funao-accent: mat-palette($mat-grey, 50);
+$funao-warn: mat-palette($mat-grey, 900);
+
+$funao-theme: mat-light-theme($funao-primary, $funao-accent, $funao-warn);
+@include angular-material-theme($funao-theme);
+@import "./grid.css";
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
