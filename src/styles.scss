@@ -4,7 +4,7 @@
 
 // custom background and foreground palettes
 $my-dark-theme-background: (
-  status-bar: green,
+  status-bar: rgb(248, 61, 61),
   app-bar:    map_get($mat-blue, 900),
   background: rgb(14, 14, 14),
   hover:      rgba(white, 0.04), 
@@ -21,7 +21,7 @@ $my-dark-theme-background: (
 );
 
 $my-dark-theme-foreground: (
-  base:              yellow,
+  base:              rgb(248, 61, 61),
   divider:           $white-12-opacity,
   dividers:          $white-12-opacity,
   disabled:          rgba(white, 0.3),
@@ -81,4 +81,33 @@ body {
     right:0;
     overflow:hidden;
     z-index:-1; /* Remove this line if it's not going to be a background! */
+}
+
+.create-funa-dialog .mat-dialog-container {
+  width: 100vw !important;
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+
+/* custom scrollbar */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(71, 71, 71);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3b3b3b;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(129, 129, 129);
 }

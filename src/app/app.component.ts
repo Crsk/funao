@@ -1,4 +1,11 @@
+import { CreateFunaDialog } from './shared/dialogs/create-funa/create-funa.dialog';
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'fun-root',
@@ -7,7 +14,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor() { }
+  animal: string;
+  name: string;
+
+  constructor(public dialog: MatDialog) { }
+
+  createFuna(): void {
+    this.dialog.open(CreateFunaDialog, {
+      panelClass: 'create-funa-dialog',
+      width: '100hw',
+      data: { name: this.name, animal: this.animal },
+      autoFocus: false,
+      disableClose: true,
+    })
+  }
 
   login() {
     alert('asd')
