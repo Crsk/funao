@@ -1,10 +1,7 @@
+import { FunaService } from './../../services/funa.service';
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-
-export interface IIdentification {
-  value: string,
-  viewValue: string,
-}
+import { Funa } from '../../models/funa';
 
 @Component({
   selector: 'fun-create-funa',
@@ -14,24 +11,24 @@ export interface IIdentification {
 export class CreateFunaDialog {
 
   public exitMessage: string = '😨 Tengo miedo'
-
-  public identificationsSelected: IIdentification[] = []
-
-  public identifications: IIdentification[] = [
-    { value: 'name', viewValue: 'Nombre' },
-    { value: 'alias', viewValue: 'Apodo' },
-    { value: 'rut', viewValue: 'RUT' },
-    { value: 'address', viewValue: 'Dirección' },
-    { value: 'photos', viewValue: 'Fotos' },
-    { value: 'other', viewValue: 'Otro' },
+  public identSelection: string[] = []
+  public funa: Funa
+  public idents: string[] = [
+    'Nombre',
+    'Apodo',
+    'RUT',
+    'Dirección',
+    'Fotos',
+    'Otro',
   ]
 
   constructor(
-    public dialogRef: MatDialogRef<CreateFunaDialog>
-  ) { }
+    public dialogRef: MatDialogRef<CreateFunaDialog>,
+    private funaService: FunaService,
+  ) { this.funa = new Funa() }
 
   /**
-   * asks for confirmation, then closes the dialog
+   * asks for confirmation, then closes the create funa dialog
    */
   public exit(): void {
     this.exitMessage === '😯 Salir' ? this.dialogRef.close() : null
@@ -39,28 +36,61 @@ export class CreateFunaDialog {
     this.exitMessage = '😯 Salir'
   }
 
-  get nameSelected(): boolean {
-    return this.identificationsSelected.find(x => x.value === 'name') ? true : false
+  /**
+   * Creates a funa in db, right then closes the modal
+   */
+  public async createFuna(): Promise<void> {
+    this.exitMessage = '⏳ ...'
+    await this.funaService.create(this.funa)
+    this.dialogRef.close()
   }
 
-  get aliasSelected(): boolean {
-    return this.identificationsSelected.find(x => x.value === 'alias') ? true : false
+  /**
+   * Looks for name user selection
+   * @returns the name if found, undefined if not
+   */
+  public get name(): string | undefined {
+    return this.identSelection.find(x => x === 'Nombre')
   }
 
-  get rutSelected(): boolean {
-    return this.identificationsSelected.find(x => x.value === 'rut') ? true : false
+  /**
+   * Looks for alias user selection
+   * @returns the alias if found, undefined if not
+   */
+  public get alias(): string | undefined {
+    return this.identSelection.find(x => x === 'Apodo')
   }
 
-  get addressSelected(): boolean {
-    return this.identificationsSelected.find(x => x.value === 'address') ? true : false
+  /**
+   * Looks for rut user selection
+   * @returns the rut if found, undefined if not
+   */
+  public get rut(): string | undefined {
+    return this.identSelection.find(x => x === 'RUT')
   }
 
-  get photosSelected(): boolean {
-    return this.identificationsSelected.find(x => x.value === 'photos') ? true : false
+  /**
+   * Looks for address user selection
+   * @returns the address if found, undefined if not
+   */
+  public get address(): string | undefined {
+    return this.identSelection.find(x => x === 'Dirección')
   }
 
-  get otherSelected(): boolean {
-    return this.identificationsSelected.find(x => x.value === 'other') ? true : false
+  /**
+   * Looks for rut user selection
+   * @returns the rut if found, undefined if not
+   */
+  public get photo(): string | undefined {
+    return this.identSelection.find(x => x === 'Fotos')
+  }
+
+  /**
+   * Looks fot other user selection
+   * @returns the other if found, undefined if not
+   */
+  public get other(): string | undefined {
+    return this.identSelection.find(x => x === 'Otro')
   }
 
 }
