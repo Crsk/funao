@@ -5,6 +5,7 @@ export class Funa implements IFuna {
     id?: string
     title: string
     identValues: IdentValues
+    description: string
 
     constructor(iFuna?: IFuna) {
         Object.assign(this, iFuna)
@@ -16,6 +17,7 @@ export class Funa implements IFuna {
             id: id || this.id,
             title: this.title || null,
             identValues: this.identValues.model() || null,
+            description: this.description
         }
     }
 }

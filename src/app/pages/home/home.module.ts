@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { Routes, RouterModule } from '@angular/router';
+import { FunaModule } from 'src/app/shared/components/funa/funa.module';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     BasicModule,
     MaterialLayoutModule,
     MaterialButtonsIndicatorsModule,
+    FunaModule,
   ]
 })
 

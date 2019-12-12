@@ -1,0 +1,22 @@
+<mat-card class="pt-3 pb-3 w-100" fxLayoutAlign="center center">
+  <div>
+    <div dgAreas="top | middle | bottom">
+      <div gdArea="top" fxLayoutAlign="center end">
+        {{funa.title}}
+      </div>
+      <div gdArea="middle">
+        <div gdAreas="top-1 top-2" class="mt-4 mb-4">
+          <div gdArea="top-1" fxLayoutAlign="center start">
+            <mat-icon color="primary">favorite</mat-icon>
+          </div>
+          <div gdArea="top-2" fxLayoutAlign="center end">
+            <mat-icon color="primary">favorite</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div gdArea="bottom" fxLayoutAlign="center center">
+        {{funa.description}}
+      </div>
+    </div>
+  </div>
+</mat-card>
