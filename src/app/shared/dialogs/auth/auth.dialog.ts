@@ -1,4 +1,6 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'fun-auth',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthDialog implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<AuthDialog>,
+    private auth: AuthService,
+  ) { }
 
   ngOnInit() {
+  }
+
+  async googleSignIn() {
+    await this.auth.googleSignIn()
+    this.dialogRef.close()
   }
 
 }

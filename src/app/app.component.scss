@@ -1,3 +1,12 @@
 .topbar-spacer {
     flex: 1 1 auto;
 }
+
+.thumbnail {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.02),
+    0 4px 5px 1px rgba(0, 0, 0, 0.02),
+    0 3px 7px 2px rgba(0, 0, 0, 0.02);
+ }

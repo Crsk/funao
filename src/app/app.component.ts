@@ -1,7 +1,10 @@
+import { AuthService } from './shared/services/auth.service';
 import { CreateFunaDialog } from './shared/dialogs/create-funa/create-funa.dialog';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthDialog } from './shared/dialogs/auth/auth.dialog';
+import { User } from './shared/models/user';
+import { Subscription } from 'rxjs';
 
 export interface DialogData {
   animal: string;
@@ -13,18 +16,21 @@ export interface DialogData {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
+  user: User
+  user$$: Subscription
 
-  animal: string;
-  name: string;
-
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    private dialog: MatDialog,
+    private authService: AuthService,
+  ) {
+    this.user$$ = this.authService.user$.subscribe(user => this.user = user)
+  }
 
   createFuna(): void {
     this.dialog.open(CreateFunaDialog, {
       panelClass: 'create-funa-dialog',
       width: '100hw',
-      data: { name: this.name, animal: this.animal },
       autoFocus: false,
       disableClose: true,
     })
@@ -34,6 +40,10 @@ export class AppComponent {
     this.dialog.open(AuthDialog, {
       autoFocus: false
     })
+  }
+
+  ngOnDestroy() {
+    if (this.user$$) this.user$$.unsubscribe()
   }
 
 }

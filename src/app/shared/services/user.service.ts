@@ -9,7 +9,7 @@ import { IUser } from '../interfaces/user';
   providedIn: 'root'
 })
 export class UserService {
-  
+
   userCollection: AngularFirestoreCollection<IUser> = this.db.collection<IUser>('users')
 
   constructor(private db: AngularFirestore) { }
@@ -22,11 +22,19 @@ export class UserService {
   }
 
   /**
-   * updates the user
+   * Gets the user instance observable from given id
+   * @param uid - the user unique identificator
+   */
+  public getUser(uid: string): Observable<User> {
+    return this.userCollection.doc<IUser>(uid).valueChanges().pipe(map(user => new User(user)))
+  }
+
+  /**
+   * updates or creates the user
    * @param user - the user with the new values
    */
-  updateUser(user: User) {
-    this.userCollection.doc<IUser>(user.id).update(user.model())
+  public upSertUser(user: User) {
+    this.userCollection.doc<IUser>(user.uid).set(user.model(), { merge: true })
   }
 
 }

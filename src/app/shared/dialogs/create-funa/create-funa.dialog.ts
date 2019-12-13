@@ -23,7 +23,7 @@ export class CreateFunaDialog {
   ]
 
   constructor(
-    public dialogRef: MatDialogRef<CreateFunaDialog>,
+    private dialogRef: MatDialogRef<CreateFunaDialog>,
     private funaService: FunaService,
   ) { this.funa = new Funa() }
 

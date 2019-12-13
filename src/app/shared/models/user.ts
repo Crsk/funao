@@ -2,16 +2,21 @@ import { IUser } from '../interfaces/user'
 
 export class User implements IUser {
 
-    id: string
+    uid: string
     name: string
+    email: string
+    photoURL: string
 
     constructor(iUser: IUser) {
         Object.assign(this, iUser)
     }
 
-    model(): Partial<IUser> {
+    model(): IUser {
         return {
-            name: this.name
+            uid: this.uid,
+            name: this.name || null,
+            email: this.email || null,
+            photoURL: this.photoURL || null,
         }
     }
 
