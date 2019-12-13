@@ -1,6 +1,7 @@
 import { CreateFunaDialog } from './shared/dialogs/create-funa/create-funa.dialog';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthDialog } from './shared/dialogs/auth/auth.dialog';
 
 export interface DialogData {
   animal: string;
@@ -30,7 +31,9 @@ export class AppComponent {
   }
 
   login() {
-    alert('asd')
+    this.dialog.open(AuthDialog, {
+      autoFocus: false
+    })
   }
 
 }

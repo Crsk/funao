@@ -1,4 +1,4 @@
-import { CreateFunaModule } from './shared/dialogs/create-funa/create-funa.module';
+import { CreateFunaDialogModule } from './shared/dialogs/create-funa/create-funa.module';
 import { BasicModule } from './shared/modules/basic/basic.module';
 import { MaterialLayoutModule } from './shared/modules/material/layout.module';
 import { MaterialNavigationModule } from './shared/modules/material/navigation.module';
@@ -11,6 +11,7 @@ import { FirebaseModule } from './shared/modules/firebase/firebase.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialFormControlsModule } from './shared/modules/material/form-controls.module';
 import { MaterialPopuosModalsModule } from './shared/modules/material/popuos-modals.module';
+import { AuthDialogModule } from './shared/dialogs/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MaterialPopuosModalsModule } from './shared/modules/material/popuos-mod
     AppRoutingModule,
     BrowserAnimationsModule,
     FirebaseModule,
-    CreateFunaModule,
+    CreateFunaDialogModule,
+    AuthDialogModule,    
     BasicModule,
     
     MaterialNavigationModule,

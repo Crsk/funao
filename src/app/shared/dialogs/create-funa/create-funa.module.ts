@@ -22,4 +22,4 @@ import { FormsModule } from '@angular/forms';
   entryComponents: [CreateFunaDialog],
 })
 
-export class CreateFunaModule { }
+export class CreateFunaDialogModule { }
