@@ -1,11 +1,31 @@
-<div class="row" fxLayoutAlign="center center">
-    <div class="col-12 mb-2 text-center">
-        <h3>Inicia Sesión</h3>
-    </div>
-    <div clas="col-6">
-        <img (click)="googleSignIn()" src="../../../../assets/icons/google.svg" class="auth-icon">
-    </div>
-    <div clas="col-6">
-        <img src="../../../../assets/icons/instagram.svg" class="auth-icon">
-    </div>
+<div *ngIf="!user">
+  <ng-container *ngTemplateOutlet="tLogin"></ng-container>
 </div>
+<div *ngIf="user">
+  <ng-container *ngTemplateOutlet="tLogout"></ng-container>
+</div>
+
+<ng-template #tLogin>
+  <div class="row" fxLayoutAlign="center center">
+    <div class="col-12 mb-2 text-center">
+      <h3 *ngIf="user">Inicia Sesión</h3>
+    </div>
+    <div clas="col-6">
+      <img (click)="googleSignIn()" src="../../../../assets/icons/google.svg" class="auth-icon">
+    </div>
+    <div clas="col-6">
+      <img (click)="instagramSignIn()" src="../../../../assets/icons/instagram.svg" class="auth-icon">
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #tLogout>
+  <div class="row" fxLayoutAlign="center center">
+    <div class="col-12 mb-2 text-center">
+      <h4 *ngIf="user">Ya te vas {{user.name}}? </h4>
+    </div>
+    <div clas="col-12">
+      <button mat-button (click)="signOut()">😦 Cerrar Sesión</button>
+    </div>
+  </div>
+</ng-template>

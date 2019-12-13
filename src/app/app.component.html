@@ -5,11 +5,9 @@
         <button mat-button (click)="createFuna()">
             Funar a alguien!
         </button>
-        <button *ngIf="!user" mat-icon-button (click)="login()">
-            <mat-icon>account_circle</mat-icon>
-        </button>
-        <button *ngIf="user" mat-icon-button (click)="login()">
-            <img [src]="user.photoURL" height="100" class="thumbnail">
+        <button mat-icon-button (click)="login()">
+            <mat-icon *ngIf="!user">account_circle</mat-icon>
+            <img *ngIf="user" [src]="user.photoURL" class="thumbnail">
         </button>
     </mat-toolbar-row>
 </mat-toolbar>
