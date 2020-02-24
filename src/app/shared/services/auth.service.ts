@@ -19,7 +19,7 @@ export class AuthService {
     private router: Router,
     private userService: UserService,
   ) {
-    this.initializeUser$()
+    this._initializeUser$()
   }
 
   /**
@@ -28,22 +28,7 @@ export class AuthService {
   public async googleSignIn(): Promise<void> {
     const provider = new auth.GoogleAuthProvider()
     const credential = await this.afAuth.auth.signInWithPopup(provider)
-    this.updateGoogleUser(credential.user)
-  }
-
-  /**
-   * Receives a google user and creates or updates its data in our db
-   * @param gUser - the user from google auth
-   */
-  private updateGoogleUser(gUser): void {
-    const user: User = new User({
-      uid: gUser.uid,
-      name: gUser.displayName,
-      email: gUser.email,
-      photoURL: gUser.photoURL
-    })
-
-    this.userService.upSertUser(user)
+    this._updateGoogleUser(credential.user)
   }
 
   /**
@@ -55,13 +40,25 @@ export class AuthService {
   }
 
   /**
+   * Receives a google user and creates or updates its data in our db
+   * @param gUser - the user from google auth
+   */
+  private _updateGoogleUser(gUser): void {
+    const user: User = new User({
+      uid: gUser.uid,
+      name: gUser.displayName,
+      email: gUser.email,
+      photoURL: gUser.photoURL
+    })
+
+    this.userService.upSertUser(user)
+  }
+
+  /**
    * Get the auth state, then fetch the Firestore user document or return null
    */
-  private initializeUser$(): void {
-    this.user$ = this.afAuth.authState.pipe(
-      filter(a => !!a),
-      switchMap(user => this.userService.getUser(user.uid))
-    )
+  private _initializeUser$(): void {
+    this.user$ = this.afAuth.authState.pipe(filter(a => !!a), switchMap(user => this.userService.getUser(user.uid)))
   }
 
 }

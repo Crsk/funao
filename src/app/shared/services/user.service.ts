@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
@@ -18,7 +18,7 @@ export class UserService {
    * get all users from db
    */
   public getUsers(): Observable<User[]> {
-    return this.userCollection.valueChanges().pipe(map(x => x.map(x => new User(x))))
+    return this.userCollection.valueChanges().pipe(map(users => users.map(user => new User(user))))
   }
 
   /**

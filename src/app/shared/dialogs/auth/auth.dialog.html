@@ -22,7 +22,8 @@
 <ng-template #tLogout>
   <div class="row" fxLayoutAlign="center center">
     <div class="col-12 mb-2 text-center">
-      <h4 *ngIf="user">Ya te vas {{user.name}}? </h4>
+      <h4 *ngIf="user">Ya te vas? </h4>
+      <p>Te vamos a funar {{user.name}}</p>
     </div>
     <div clas="col-12">
       <button mat-button (click)="signOut()">😦 Cerrar Sesión</button>
